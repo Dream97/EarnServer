@@ -5,8 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
-
+import entity.GetDataResult;
 import entity.User;
 /**
  * ²Ù×÷²ã+
@@ -16,7 +15,7 @@ import entity.User;
 
 public class UserDaoImplement implements UserDao{
 
-	    public int queryUserName(Connection connection, String id) throws SQLException {  
+	    public int queryId(Connection connection, String id) throws SQLException {  
 	  
 	    	String sql = "select * from user_table where id='"+id+"'";
 	        String pwd ;
@@ -79,15 +78,54 @@ public class UserDaoImplement implements UserDao{
 		}
 
 		@Override
-		public void updateToken(Connection connection, int userId, String token) throws SQLException {
+		public void updateToken(Connection connection, String id, String token) throws SQLException {
 			// TODO Auto-generated method stub
-			
+			String sql = "update user_table set token='"+token+"'where id='"+id+"'";
+	    	int i = 0;
+	    	PreparedStatement pstmt;
+	        try {
+	            pstmt = (PreparedStatement)connection.prepareStatement(sql);
+	            i = pstmt.executeUpdate( );
+	            //int col = rs.getMetaData().getColumnCount();
+	            System.out.println("²åÈëtoken:"+i);
+	            pstmt.close();
+	            connection.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
 		}
 
 		@Override
-		public int getUserId(Connection connection, String token) throws SQLException {
+		public GetDataResult getData(Connection connection, String token) throws SQLException {
 			// TODO Auto-generated method stub
-			return 0;
+			String sql = "select * from user_table where token='"+token+"'";
+	    	GetDataResult result = new GetDataResult();
+			
+	    	PreparedStatement pstmt;
+	        try {
+	            pstmt = (PreparedStatement)connection.prepareStatement(sql);
+	            ResultSet rs = pstmt.executeQuery();
+	            int col = rs.getMetaData().getColumnCount();
+	            System.out.println("============================");
+	            while (rs.next()) {
+	                for (int i = 1; i <= col; i++) {
+	                    System.out.print(rs.getString(i) + "\t");
+	                }
+	                result.setCode(0);
+	                result.setName(rs.getString(2));
+	                result.setMyselfMoney(rs.getDouble(5));
+	                result.setStudentMoney(rs.getDouble(6));
+	                return result;
+	            }
+	            System.out.println("============================");
+	            //System.out.println(Constants.name);
+
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        
+	        result.setCode(1);
+			return result;
 		}  
 	  
 }

@@ -27,7 +27,7 @@ public class LoginService {
 	          
 	        try {  
 	            //1、先判断是否有相应的用户名  
-	            int code = mUserDao.queryUserName(connection, id);
+	            int code = mUserDao.queryId(connection, id);
 	            if (code == 0) {  
 	                result.setCode(RESULT_NULL_USERNAME);  
 	                System.out.println("没有该用户");
@@ -50,6 +50,7 @@ public class LoginService {
 	           // mUserDao.updateToken(connection, userId, token);
 	            result.setCode(0);  
 	            result.setToken(token);  
+	            mUserDao.updateToken(connection, id, token);
                 System.out.println("密码正确,获取token");
 	            return result;  
 	        } catch (SQLException e) {  

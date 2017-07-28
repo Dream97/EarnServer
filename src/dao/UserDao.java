@@ -3,7 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-
+import entity.GetDataResult;
 import entity.User;
 
 public interface UserDao {
@@ -22,7 +22,7 @@ public interface UserDao {
      * @param userName 
      * @return 
      */  
-    public int queryUserName(Connection connection, String userName) throws SQLException;  
+    public int queryId(Connection connection, String userName) throws SQLException;  
   
     /** 
      * 根据User查询数据库中相应的id的password是否正确。如果正确，返回对应的id，否则返回0 
@@ -42,7 +42,7 @@ public interface UserDao {
      * @param token 
      * @throws SQLException 
      */  
-    public void updateToken(Connection connection, int userId, String token) throws SQLException;  
+    public void updateToken(Connection connection, String Id, String token) throws SQLException;  
       
     /** 
      * 根据token获取到用户的id，如果没有，返回0 
@@ -50,6 +50,6 @@ public interface UserDao {
      * @param token 
      * @throws SQLException 
      */  
-    public int getUserId(Connection connection,  String token) throws SQLException;  
+    public GetDataResult getData(Connection connection,  String token) throws SQLException;  
       
 }  
