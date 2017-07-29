@@ -53,11 +53,20 @@ public interface UserDao {
     public GetDataResult getData(Connection connection,  String token) throws SQLException;  
     
     /**
-     * 根据token更新用户的
+     * 根据token更新用户的money
      * @param connection
      * @param token
      * @return
      * @throws SQLException
      */
     public int updateMoney(Connection connection,String token,String money) throws SQLException;  
+    /**
+     * 根据token更新用户的studentMoney
+     * @param connection
+     * @param token
+     * @param studentMoney
+     * @return
+     * @throws SQLException
+     */
+    public int updateStudentMoney(Connection connection,String token,String studentMoney) throws SQLException;
 }  
