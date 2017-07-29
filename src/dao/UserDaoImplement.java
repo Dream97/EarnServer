@@ -89,7 +89,7 @@ public class UserDaoImplement implements UserDao{
 	            //int col = rs.getMetaData().getColumnCount();
 	            System.out.println("²åÈëtoken:"+i);
 	            pstmt.close();
-	            connection.close();
+	           // connection.close();
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }
@@ -126,6 +126,26 @@ public class UserDaoImplement implements UserDao{
 	        
 	        result.setCode(1);
 			return result;
+		}
+
+		@Override
+		public int updateMoney(Connection connection, String token, String money) throws SQLException {
+			// TODO Auto-generated method stub
+						String sql = "update user_table set myself_money='"+money+"'where token='"+token+"'";
+				    	int i = 0;
+				    	PreparedStatement pstmt;
+				        try {
+				            pstmt = (PreparedStatement)connection.prepareStatement(sql);
+				            i = pstmt.executeUpdate( );
+				            //int col = rs.getMetaData().getColumnCount();
+				            System.out.println("¸üÐÂÇ®:"+i);
+				            pstmt.close();
+				            return 0;
+				        } catch (SQLException e) {
+				            e.printStackTrace();
+				            return 1;
+				        }
+			
 		}  
 	  
 }
