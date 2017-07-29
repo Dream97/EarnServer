@@ -11,7 +11,7 @@ import util.DBHelper;
 public class LoginService {
 	    private UserDao mUserDao = new UserDaoImplement();  
 	      
-	    private static final int RESULT_NULL_USERNAME = 1,RESULT_WRONG_PASSWORD = 2;  
+	    private static final int RESULT_NULL_USERNAME = 306,RESULT_WRONG_PASSWORD = 304;  
 	  
 	    public LoginResult login(String id, String passWord) {  
 	          
@@ -27,8 +27,9 @@ public class LoginService {
 	          
 	        try {  
 	            //1、先判断是否有相应的用户名  
-	            int code = mUserDao.queryId(connection, id);
-	            if (code == 0) {  
+	            int status = mUserDao.queryId(connection, id);
+	            if (status == 0) {  
+	            	result.setStatus(1);
 	                result.setCode(RESULT_NULL_USERNAME);  
 	                System.out.println("没有该用户");
 	                return result;  
@@ -37,6 +38,7 @@ public class LoginService {
 	            //2、再判断密码是否正确  
 	            int userId = mUserDao.queryPassWord(connection, id, passWord);  
 	            if (userId == 0) {  
+	            	result.setStatus(1);
 	                result.setCode(RESULT_WRONG_PASSWORD);
 	                System.out.println("密码错误");
 	                return result;  
@@ -48,7 +50,7 @@ public class LoginService {
 	            //String token = "_"+currentTime;  
 	            
 	           // mUserDao.updateToken(connection, userId, token);
-	            result.setCode(0);  
+	            result.setStatus(0);  
 	            result.setToken(token);  
 	            mUserDao.updateToken(connection, id, token);
                 System.out.println("密码正确,获取token");

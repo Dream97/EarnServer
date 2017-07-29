@@ -1,11 +1,18 @@
 package entity;
 
 public class GetDataResult {
+	private int status;
 	private int code;
 	private String name;
 	private double myselfMoney;
 	private double studentMoney;
 	
+	public int getStatus(){
+		return status;
+	}
+	public void setStatus(int status){
+		this.status = status;
+	}
 	public int getCode() {
 		return code;
 	}

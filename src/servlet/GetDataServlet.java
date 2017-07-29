@@ -59,9 +59,9 @@ public class GetDataServlet extends HttpServlet {
             GetDataService service = new GetDataService();  
             GetDataResult result = service.getData(token);  
             Map<String, Object> map = new HashMap<>();  
-            map.put("result", result.getCode());  
+            map.put("status", result.getStatus());  
         //如果成功，还需要加上token  
-            if (result.getCode() == 0) {  
+            if (result.getStatus() == 0) {  
             	Map<String, Object> dataMap = new HashMap<>();  
             	dataMap.put("name", result.getName());
             	dataMap.put("myselfMoney",result.getMyselfMoney());
@@ -70,6 +70,7 @@ public class GetDataServlet extends HttpServlet {
            
             	}else{  
                 //没有获得数据处理 
+            		map.put("err", result.getCode());
             }
             String json = JSON.toJSONString(map);  
             printWriter.write(json);  

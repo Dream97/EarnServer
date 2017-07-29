@@ -57,23 +57,24 @@ public class LoginServlet extends HttpServlet{
             LoginService service = new LoginService();  
             LoginResult loginResult = service.login(id, pwd);  
             Map<String, Object> map = new HashMap<>();  
-            map.put("result", loginResult.getCode());  
+            map.put("status", loginResult.getStatus());  
         //如果成功，还需要加上token  
-            if (loginResult.getCode() == 0) {  
+           
+            if (loginResult.getStatus() == 0) {  
             	Map<String, Object> dataMap = new HashMap<>();  
             	dataMap.put("token", loginResult.getToken());  
-            	map.put("data", dataMap);    
-            	String result = JSON.toJSONString(map);  
-            	System.out.println("结果为"+result);  
-
-            	printWriter.write(result);  
-                printWriter.close();  
-            }      
+            	map.put("data", dataMap);       
+            }else{
+            	map.put("err", loginResult.getCode());
+            }
+            
+            String result = JSON.toJSONString(map);  
+        	System.out.println("结果为"+result);
+        	printWriter.write(result);
+            printWriter.close();  
             //printWriter.write("请求的userName为" + userName + "\n请求的passWord为" + pwd);
         }catch(Exception e){
             e.printStackTrace();
-        }
-    	 
-        printWriter.close();  
+        }  
         }
 }

@@ -112,6 +112,7 @@ public class UserDaoImplement implements UserDao{
 	                    System.out.print(rs.getString(i) + "\t");
 	                }
 	                result.setCode(0);
+	                result.setStatus(0);
 	                result.setName(rs.getString(2));
 	                result.setMyselfMoney(rs.getDouble(5));
 	                result.setStudentMoney(rs.getDouble(6));
@@ -124,7 +125,8 @@ public class UserDaoImplement implements UserDao{
 	            e.printStackTrace();
 	        }
 	        
-	        result.setCode(1);
+	        result.setStatus(1);
+	        result.setCode(201);
 			return result;
 		}
 
@@ -139,6 +141,7 @@ public class UserDaoImplement implements UserDao{
 				            i = pstmt.executeUpdate( );//1时，更新金额成功，0失败
 				            //int col = rs.getMetaData().getColumnCount();
 				            System.out.println("更新钱:"+i);
+				            if(i==0) return 1;
 				            pstmt.close();
 				            return 0;
 				        } catch (SQLException e) {
@@ -159,6 +162,7 @@ public class UserDaoImplement implements UserDao{
 	            i = pstmt.executeUpdate( );//1时，更新金额成功，0失败
 	            //int col = rs.getMetaData().getColumnCount();
 	            System.out.println("更新徒弟钱:"+i);
+	            if(i==0) return 1;
 	            pstmt.close();
 	            return 0;
 	        } catch (SQLException e) {
