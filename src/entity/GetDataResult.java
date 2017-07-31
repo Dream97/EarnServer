@@ -4,8 +4,11 @@ public class GetDataResult {
 	private int status;
 	private int code;
 	private String name;
-	private double myselfMoney;
-	private double studentMoney;
+	private String myselfMoney;
+	private String studentMoney;
+	private String alipayId;
+	private String realName;
+	private String wechat;
 	
 	public int getStatus(){
 		return status;
@@ -27,18 +30,38 @@ public class GetDataResult {
 		this.name = name;
 	}
 	
-	public double getMyselfMoney(){
+	public String getMyselfMoney(){
 		return myselfMoney;
 	}
-	public void setMyselfMoney(double myselfMoney)
+	public void setMyselfMoney(String myselfMoney)
 	{
 		this.myselfMoney = myselfMoney;
 	}
 	
-	public double getStudentMoney(){
+	public String getStudentMoney(){
 		return this.studentMoney;
 	}
-	public void setStudentMoney(double studentMoney){
+	public void setStudentMoney(String studentMoney){
 		this.studentMoney = studentMoney; 
+	}
+	
+	
+	public String getAlipayId(){
+		return alipayId;
+	}
+	public void setAlipayId(String alipayId){
+		this.alipayId = alipayId;
+	}
+	public String getRealName(){
+		return realName;
+	}
+	public void setRealName(String realName){
+		this.realName = realName;
+	}
+	public String getWechat(){
+		return wechat;
+	}
+	public void setWechat(String wechat){
+		this.wechat = wechat;
 	}
 }

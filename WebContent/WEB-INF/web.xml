@@ -27,7 +27,7 @@
     <servlet-name>UpdateMoneyServlet</servlet-name>
     <url-pattern>/UpdateMoneyServlet</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>UpdateStudentMoneyServlet</servlet-name>
     <servlet-class>servlet.UpdateStudentMoneyServlet</servlet-class>
   </servlet>
@@ -35,8 +35,6 @@
     <servlet-name>UpdateStudentMoneyServlet</servlet-name>
     <url-pattern>/UpdateStudentMoneyServlet</url-pattern>
   </servlet-mapping>
-  
-  
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
     <welcome-file>test.jsp</welcome-file>

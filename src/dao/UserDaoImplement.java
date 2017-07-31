@@ -114,8 +114,10 @@ public class UserDaoImplement implements UserDao{
 	                result.setCode(0);
 	                result.setStatus(0);
 	                result.setName(rs.getString(2));
-	                result.setMyselfMoney(rs.getDouble(5));
-	                result.setStudentMoney(rs.getDouble(6));
+	                result.setMyselfMoney(rs.getString(5));
+	                result.setStudentMoney(rs.getString(6));
+	                result.setAlipayId(rs.getString(7));
+	                
 	                return result;
 	            }
 	            System.out.println("============================");
@@ -169,6 +171,26 @@ public class UserDaoImplement implements UserDao{
 	            e.printStackTrace();
 	            return 1;
 	        }
-		}  
+		}
+		
+		@Override
+		public int updateAlipay(Connection connection, String token, String alipayId,String realName) throws SQLException {
+			// TODO Auto-generated method stub         
+			String sql = "update user_table set alipay_id='"+alipayId+"',real_name='"+realName+"'where token='"+token+"'";
+	    	int i = 0;
+	    	PreparedStatement pstmt;
+	        try {
+	            pstmt = (PreparedStatement)connection.prepareStatement(sql);
+	            i = pstmt.executeUpdate( );//1时，更新金额成功，0失败
+	            //int col = rs.getMetaData().getColumnCount();
+	            System.out.println("更新支付宝账号:"+i);
+	            if(i==0) return 1;
+	            pstmt.close();
+	            return 0;
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	            return 1;
+	        }
+		}
 	  
 }

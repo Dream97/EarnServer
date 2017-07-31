@@ -69,4 +69,15 @@ public interface UserDao {
      * @throws SQLException
      */
     public int updateStudentMoney(Connection connection,String token,String studentMoney) throws SQLException;
+    
+    /**
+     * 保存用户的支付宝账号
+     * @param connection
+     * @param token
+     * @param alipayId
+     * @param realName
+     * @return
+     * @throws SQLException
+     */
+    public int updateAlipay(Connection connection,String token,String alipayId,String realName) throws SQLException;  
 }  
