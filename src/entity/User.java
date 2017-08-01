@@ -5,8 +5,8 @@ public class User {
 	private String name;
 	private String password;
 	private String token;
-	private double money;
-	private double studentMoney;
+	private String money;
+	private String studentMoney;
 	/*
 	 * getºÍset·½·¨
 	 */
@@ -40,18 +40,18 @@ public class User {
 	}
 	
 	
-	public void setMoney(double money){
+	public void setMoney(String money){
 		this.money = money;
 	}
-	public double getMoney(){	
+	public String getMoney(){	
 		return money;
 	}
 	
 	
-	public void setStudentMoney(double studentMoney){
+	public void setStudentMoney(String studentMoney){
 		this.studentMoney = studentMoney;
 	}
-	public double getStudentMoney(){
+	public String getStudentMoney(){
 		return studentMoney;
 	}
 	

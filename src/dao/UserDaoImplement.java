@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 
+import entity.Constants;
 import entity.GetDataResult;
 import entity.User;
 /**
@@ -191,6 +193,88 @@ public class UserDaoImplement implements UserDao{
 	            e.printStackTrace();
 	            return 1;
 	        }
+		}
+
+		@Override
+		public int updateWechat(Connection connection, String token, String wechat) throws SQLException {
+			// TODO Auto-generated method stub
+			// TODO Auto-generated method stub         
+						String sql = "update user_table set wechat_id='"+wechat+"'where token='"+token+"'";
+				    	int i = 0;
+				    	PreparedStatement pstmt;
+				        try {
+				            pstmt = (PreparedStatement)connection.prepareStatement(sql);
+				            i = pstmt.executeUpdate( );//1时，更新金额成功，0失败
+				            //int col = rs.getMetaData().getColumnCount();
+				            System.out.println("更新微信名:"+i);
+				            if(i==0) return 1;
+				            pstmt.close();
+				            return 0;
+				        } catch (SQLException e) {
+				            e.printStackTrace();
+				            return 1;
+				        }
+		}
+
+		@Override
+		public User queryIdFromToken(Connection connection, String token) throws SQLException {
+			// TODO Auto-generated method stub
+			User user = new User();
+			
+	    	String sql = "select * from user_table where token='"+token+"'";
+	    	
+	    	PreparedStatement pstmt;
+	        try {
+	            pstmt = (PreparedStatement)connection.prepareStatement(sql);
+	            ResultSet rs = pstmt.executeQuery();
+	            int col = rs.getMetaData().getColumnCount();
+	            System.out.println("============================");
+	            while (rs.next()) {
+	            	
+	            		System.out.println("查询到用户");
+	                    user.setId(rs.getString(1));
+	                    user.setPassword(rs.getString(3));
+	                    user.setMoney(rs.getString(5));
+	                    user.setStudentMoney(rs.getString(7));
+	                    return user;
+	            }
+	            System.out.println("============================");
+	            //System.out.println(Constants.name);
+	            
+	        } catch (SQLException e) {
+	        	e.printStackTrace();
+	        }
+	        user.setId("0");
+			return user;
+		}
+
+		@Override
+		public int saveWithdraw(Connection conn, String id,String date, String way, String money,String cop) throws SQLException {
+			// TODO Auto-generated method stub
+			int i = 0;
+			String sql = "insert into withdraw_table (id,date,way,money,complete,note,etc) values(?,?,?,?,?,?,?) ";
+	        PreparedStatement pstmt;
+	        Calendar now = Calendar.getInstance();  
+	       
+	        String etc = now.get(Calendar.YEAR)+"/"+(now.get(Calendar.MONTH) + 1)+"/"+now.get(Calendar.DAY_OF_MONTH)+"_"+id;
+	        
+	        System.out.println(etc);
+			try {
+	            pstmt = (PreparedStatement) conn.prepareStatement(sql);
+	            
+	            pstmt.setString(1, id);
+	            pstmt.setString(2, date);
+	            pstmt.setString(3, way);
+	            pstmt.setString(4, money);
+	            pstmt.setString(5, cop);
+	            pstmt.setString(6, "null");
+	            pstmt.setString(7, etc);
+	            i = pstmt.executeUpdate();
+	            pstmt.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        return i; //存入成功是1，失败是0
 		}
 	  
 }

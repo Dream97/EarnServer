@@ -80,4 +80,33 @@ public interface UserDao {
      * @throws SQLException
      */
     public int updateAlipay(Connection connection,String token,String alipayId,String realName) throws SQLException;  
+
+    /**
+     * 
+     * @param connection
+     * @param token
+     * @param wechat
+     * @return
+     * @throws SQLException
+     */
+    public int updateWechat(Connection connection,String token,String wechat) throws SQLException;  
+
+    /**
+     * 通过token查询id
+     * @param connection
+     * @param token
+     * @return
+     * @throws SQLException
+     */
+    public User queryIdFromToken(Connection connection,String token) throws SQLException;  
+
+    /**
+     * 将提现请求存进去
+     * @param connection
+     * @param user
+     * @throws SQLException
+     */
+    public int saveWithdraw(Connection connection, String id,String date,String way,String money,String cop) throws SQLException;  
+
+    
 }  
