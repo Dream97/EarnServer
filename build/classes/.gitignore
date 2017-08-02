@@ -1,4 +1,5 @@
 /dao/
+/entity/
 /service/
 /servlet/
-/entity/
+/util/
