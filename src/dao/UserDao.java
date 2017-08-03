@@ -13,7 +13,7 @@ public interface UserDao {
      * @param connection 
      * @param user 
      */  
-    public void save(Connection connection, User user) throws SQLException;  
+    public int save(Connection connection, User user) throws SQLException;  
   
     /** 
      * 查询数据库中是否有对应的UserName，如果有，返回对应id，没有，返回0 

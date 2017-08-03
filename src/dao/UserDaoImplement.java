@@ -45,9 +45,23 @@ public class UserDaoImplement implements UserDao{
 	    }
 
 		@Override
-		public void save(Connection connection, User user) throws SQLException {
+		public int save(Connection connection, User user) throws SQLException {
 			// TODO Auto-generated method stub
-			
+			int i = 0;
+			String sql = "insert into user_table (id,name,password) values(?,?,?)";
+	        PreparedStatement pstmt;
+	      	try {
+	            pstmt = (PreparedStatement) connection.prepareStatement(sql);
+	            
+	            pstmt.setString(1, user.getId());
+	            pstmt.setString(2, user.getName());
+	            pstmt.setString(3, user.getPassword());
+	            i = pstmt.executeUpdate();
+	            pstmt.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        return i; //存入成功是1，失败是0
 		}
 
 		@Override
