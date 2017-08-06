@@ -66,6 +66,8 @@ public class GetDataServlet extends HttpServlet {
             	dataMap.put("name", result.getName());
             	dataMap.put("myselfMoney",result.getMyselfMoney());
             	dataMap.put("studentMolney", result.getStudentMoney());
+            	dataMap.put("alipay", result.getAlipayId());
+            	dataMap.put("wechat", result.getWechat());
             	map.put("data", dataMap);    
            
             	}else{  

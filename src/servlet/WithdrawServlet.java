@@ -63,7 +63,7 @@ public class WithdrawServlet extends HttpServlet {
 		            WithdrawService service = new WithdrawService();  
 		            BaseResult result = service.withdraw(token, pwd, money, way);  
 		            Map<String, Object> map = new HashMap<>();  
-		            map.put("status", result.getCode());  
+		            map.put("status", result.getStatus());  
 		        //如果成功，还需要加上token  
 		            if (result.getStatus() == 0) {  
 		            	//Map<String, Object> dataMap = new HashMap<>();  

@@ -133,6 +133,7 @@ public class UserDaoImplement implements UserDao{
 	                result.setMyselfMoney(rs.getString(5));
 	                result.setStudentMoney(rs.getString(6));
 	                result.setAlipayId(rs.getString(7));
+	                result.setWechat(rs.getString(8));
 	                
 	                return result;
 	            }

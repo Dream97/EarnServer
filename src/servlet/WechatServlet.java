@@ -59,7 +59,7 @@ public class WechatServlet extends HttpServlet {
             AlipayService service = new AlipayService();  
             BaseResult result = service.updateWechat(token, wechat); 
             Map<String, Object> map = new HashMap<>();  
-            map.put("status", result.getCode());  
+            map.put("status", result.getStatus());  
         //如果成功，还需要加上token  
             if (result.getStatus() == 0) {  
             	//Map<String, Object> dataMap = new HashMap<>();  

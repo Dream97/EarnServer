@@ -47,7 +47,7 @@ public class UpdateMoneyServlet extends HttpServlet {
             UpdateMoneyService service = new UpdateMoneyService();  
             BaseResult result = service.updateMoney(token, money);  
             Map<String, Object> map = new HashMap<>();  
-            map.put("status", result.getCode());  
+            map.put("status", result.getStatus());  
         //如果成功，还需要加上token  
             if (result.getStatus() == 0) {  
             	//Map<String, Object> dataMap = new HashMap<>();  
