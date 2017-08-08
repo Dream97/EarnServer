@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import entity.GetDataResult;
+import entity.StudentData;
 import entity.User;
 
 public interface UserDao {
@@ -108,5 +109,32 @@ public interface UserDao {
      */
     public int saveWithdraw(Connection connection, String id,String date,String way,String money,String cop) throws SQLException;  
 
+    /**
+     * 根据token更新用户的名字
+     * @param connection
+     * @param token
+     * @return
+     * @throws SQLException
+     */
+    public int updateName(Connection connection,String token,String name) throws SQLException;  
+
+    /**
+     * 根据token更新用户的密码
+     * @param connection
+     * @param token
+     * @return
+     * @throws SQLException
+     */
+    public int updatePWD(Connection connection,String token,String pwd) throws SQLException;  
     
+    /** 
+     * 根据token获取到用户的徒弟，如果没有，返回0 
+     * @param connection 
+     * @param token 
+     * @throws SQLException 
+     */  
+    public StudentData getStudentData(Connection connection,  String dadid) throws SQLException;  
+    
+
+
 }  

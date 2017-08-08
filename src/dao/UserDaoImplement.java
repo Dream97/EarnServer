@@ -4,10 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import entity.Constants;
 import entity.GetDataResult;
+import entity.Student;
+import entity.StudentData;
 import entity.User;
 /**
  * 操作层+
@@ -291,5 +294,85 @@ public class UserDaoImplement implements UserDao{
 	        }
 	        return i; //存入成功是1，失败是0
 		}
+
+		@Override
+		public int updateName(Connection connection, String token, String name) throws SQLException {
+			// TODO Auto-generated method stub
+			// TODO Auto-generated method stub         
+			String sql = "update user_table set name='"+name+"'where token='"+token+"'";
+	    	int i = 0;
+	    	PreparedStatement pstmt;
+	        try {
+	            pstmt = (PreparedStatement)connection.prepareStatement(sql);
+	            i = pstmt.executeUpdate( );//1时，更新金额成功，0失败
+	            //int col = rs.getMetaData().getColumnCount();
+	            System.out.println("更新name:"+i);
+	            if(i==0) return 1;
+	            pstmt.close();
+	            return 0;
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	            return 1;
+	        }
+		}
 	  
+		
+
+		@Override
+		public int updatePWD(Connection connection, String token, String pwd) throws SQLException {
+			// TODO Auto-generated method stub
+			// TODO Auto-generated method stub         
+			String sql = "update user_table set password='"+pwd+"'where token='"+token+"'";
+	    	int i = 0;
+	    	PreparedStatement pstmt;
+	        try {
+	            pstmt = (PreparedStatement)connection.prepareStatement(sql);
+	            i = pstmt.executeUpdate( );//1时，更新金额成功，0失败
+	            //int col = rs.getMetaData().getColumnCount();
+	            System.out.println("更新pwd:"+i);
+	            if(i==0) return 1;
+	            pstmt.close();
+	            return 0;
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	            return 1;
+	        }
+		}
+
+		@Override
+		public StudentData getStudentData(Connection connection, String dadid) throws SQLException {
+			// TODO Auto-generated method stub
+			String sql = "select * from user_table where dadid='"+dadid+"'";
+			StudentData result = new StudentData();
+			result.setStatus(1);
+	    	PreparedStatement pstmt;
+	        try {
+	            pstmt = (PreparedStatement)connection.prepareStatement(sql);
+	            ResultSet rs = pstmt.executeQuery();
+	            int col = rs.getMetaData().getColumnCount();
+	            System.out.println("============================");
+	            ArrayList<Student> students = new ArrayList<>();
+	            while (rs.next()) {
+	            		Student student = new Student();
+	                	student.setName(rs.getString(2));
+	                	student.setMyselfMoney(rs.getString(5));
+	                	students.add(student);
+	                	result.setStatus(0);
+	                	System.out.println("用户");
+	            }
+	            result.setStudent(students);
+	            System.out.println("============================");
+	            //System.out.println(Constants.name);
+
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        
+	        if(result.getStatus() == 1){
+	        	result.setCode(201);
+	        }
+	        
+			return result;
+		}
+		
 }

@@ -1,2 +1,6 @@
-/util/
+/com/
+/dao/
+/entity/
+/service/
 /servlet/
+/util/
