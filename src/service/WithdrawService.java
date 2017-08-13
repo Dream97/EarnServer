@@ -62,6 +62,7 @@ public class WithdrawService {
 	        		}
 	        		
 	        	}
+	        	connection.close();
 	            return result;  
 	        } catch (SQLException e) {  
 	              

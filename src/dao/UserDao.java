@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import entity.GetDataResult;
+import entity.NewResult;
 import entity.StudentData;
 import entity.User;
 
@@ -136,5 +137,12 @@ public interface UserDao {
     public StudentData getStudentData(Connection connection,  String dadid) throws SQLException;  
     
 
-
+    /** 
+     * 根据category获取到用户的徒弟，如果没有，返回0 
+     * @param connection 
+     * @param category 
+     * @throws SQLException 
+     */  
+    public NewResult getNews(Connection connection,  String category) throws SQLException;  
+    
 }  

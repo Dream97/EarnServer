@@ -9,6 +9,8 @@ import java.util.Calendar;
 
 import entity.Constants;
 import entity.GetDataResult;
+import entity.New;
+import entity.NewResult;
 import entity.Student;
 import entity.StudentData;
 import entity.User;
@@ -361,6 +363,44 @@ public class UserDaoImplement implements UserDao{
 	                	System.out.println("用户");
 	            }
 	            result.setStudent(students);
+	            System.out.println("============================");
+	            //System.out.println(Constants.name);
+
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        
+	        if(result.getStatus() == 1){
+	        	result.setCode(201);
+	        }
+	        
+			return result;
+		}
+
+		@Override
+		public NewResult getNews(Connection connection, String category) throws SQLException {
+			// TODO Auto-generated method stub
+			String sql = "select * from news_table where category='"+category+"'";
+			NewResult result = new NewResult();
+			result.setStatus(1);
+	    	PreparedStatement pstmt;
+	        try {
+	            pstmt = (PreparedStatement)connection.prepareStatement(sql);
+	            ResultSet rs = pstmt.executeQuery();
+	            int col = rs.getMetaData().getColumnCount();
+	            System.out.println("============================");
+	            ArrayList<New> news = new ArrayList<>();
+	            while (rs.next()) {
+	            		New new1 = new New();
+	                	new1.setTitle(rs.getString(2));
+	                	new1.setTimes(rs.getString(4));
+	                	new1.setImgLinks(rs.getString(5));
+	                	new1.setArtcle(rs.getString(6));
+	                	news.add(new1);
+	                	result.setStatus(0);
+	                	System.out.println("用户");
+	            }
+	            result.setNew(news);
 	            System.out.println("============================");
 	            //System.out.println(Constants.name);
 

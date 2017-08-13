@@ -57,12 +57,14 @@ public class AlipayService {
         	int status = mUserDao.updateWechat(connection, token, wechat);
             result.setStatus(status);
           System.out.println("更新wechat完的结果是"+status);
+          connection.close();
             return result;  
         } catch (SQLException e) {  
               
             e.printStackTrace();  
               
             result.setCode(1);
+            
             return result;  
         }     
     }  

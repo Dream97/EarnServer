@@ -32,6 +32,7 @@ public class UpdateMoneyService {
 	        	int status = mUserDao.updateMoney(connection, token, money);
 	            result.setStatus(status);
               System.out.println("更新money完的结果是"+status);
+              connection.close();
 	            return result;  
 	        } catch (SQLException e) {  
 	              

@@ -54,6 +54,7 @@ public class LoginService {
 	            result.setToken(token);  
 	            mUserDao.updateToken(connection, id, token);
                 System.out.println("密码正确,获取token");
+                connection.close();
 	            return result;  
 	        } catch (SQLException e) {  
 	              

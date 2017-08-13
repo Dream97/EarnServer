@@ -31,6 +31,7 @@ public class GetDataService {
 	        	//通过token查询信息
 	        	result = mUserDao.getData(connection, token);
              System.out.println("服务获取信息中");
+             connection.close();
 	            return result;  
 	        } catch (SQLException e) {  
 	              

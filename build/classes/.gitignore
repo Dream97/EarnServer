@@ -1,6 +1,5 @@
-/com/
-/dao/
 /entity/
 /service/
 /servlet/
+/dao/
 /util/
