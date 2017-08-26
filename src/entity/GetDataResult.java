@@ -3,12 +3,16 @@ package entity;
 public class GetDataResult {
 	private int status;
 	private int code;
+	private String id;
 	private String name;
 	private String myselfMoney;
 	private String studentMoney;
 	private String alipayId;
 	private String realName;
 	private String wechat;
+	
+	
+	
 	
 	public int getStatus(){
 		return status;
@@ -23,6 +27,13 @@ public class GetDataResult {
 		this.code = code;
 	}
 	
+	
+	public String getId(){
+		return id;
+	}
+	public void setId(String id){
+		this.id = id;
+	}
 	public String getName(){
 		return name;
 	}

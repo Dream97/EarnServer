@@ -134,6 +134,7 @@ public class UserDaoImplement implements UserDao{
 	                }
 	                result.setCode(0);
 	                result.setStatus(0);
+	                result.setId(rs.getString(1));
 	                result.setName(rs.getString(2));
 	                result.setMyselfMoney(rs.getString(5));
 	                result.setStudentMoney(rs.getString(6));
@@ -392,6 +393,7 @@ public class UserDaoImplement implements UserDao{
 	            ArrayList<New> news = new ArrayList<>();
 	            while (rs.next()) {
 	            		New new1 = new New();
+	            		new1.setId(rs.getString(1));
 	                	new1.setTitle(rs.getString(2));
 	                	new1.setTimes(rs.getString(4));
 	                	new1.setImgLinks(rs.getString(5));
@@ -414,5 +416,8 @@ public class UserDaoImplement implements UserDao{
 	        
 			return result;
 		}
+		
+		
+		
 		
 }

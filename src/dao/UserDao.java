@@ -145,4 +145,7 @@ public interface UserDao {
      */  
     public NewResult getNews(Connection connection,  String category) throws SQLException;  
     
+    
+    
+
 }  

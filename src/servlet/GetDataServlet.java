@@ -63,6 +63,7 @@ public class GetDataServlet extends HttpServlet {
         //如果成功，还需要加上token  
             if (result.getStatus() == 0) {  
             	Map<String, Object> dataMap = new HashMap<>();  
+            	dataMap.put("id", result.getId());
             	dataMap.put("name", result.getName());
             	dataMap.put("myselfMoney",result.getMyselfMoney());
             	dataMap.put("studentMolney", result.getStudentMoney());
